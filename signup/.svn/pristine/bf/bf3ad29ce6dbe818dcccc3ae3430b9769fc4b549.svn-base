@@ -1,7 +1,0 @@
-<!--微信小程序填坑->
-
-1.微信小程序中不能直接使用网络图片，wx.downloadFile或者wx.getImageInfo保存返回地址给canvas
-
-2.微信小程序返回页面不会刷新，需要通过getCurrntPage()获取上一页对象，调用方法去刷新
-
-3.
