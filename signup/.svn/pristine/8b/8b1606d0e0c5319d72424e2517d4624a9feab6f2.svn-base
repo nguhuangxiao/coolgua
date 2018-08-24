@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coolgua.signup.mapper.TicketMapper">
+
+	<resultMap type="Tickets" id="ticketsMap">
+		<id column="id" property="id" />
+		<result column="ticket_num" property="ticketsNum" />
+		<result column="open_id" property="openId" />
+		<result column="ticket_num_url" property="ticketNumUrl" />	
+		<result column="create_time" property="createTime" />
+		<result column="event_id" property="eventId" />
+	</resultMap>
+	
+	<insert id="insertTicket">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey>
+		insert into tb_tickets
+		(id,ticket_num,ticket_num_url,open_id,create_time,event_id)
+		values
+		(#{id},#{ticketsNum},#{ticketNumUrl},#{openId},#{createTime},#{eventId})
+	</insert>
+	
+	<select id="findTicketByopenId" resultMap="ticketsMap" parameterType="java.util.Map">
+		select * from tb_tickets where open_id=#{openId} and event_id=#{eventId}
+	</select>
+</mapper>

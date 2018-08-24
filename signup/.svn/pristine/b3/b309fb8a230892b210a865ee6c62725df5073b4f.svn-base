@@ -1,0 +1,18 @@
+{
+  "pages":[ 
+    "pages/index/index",
+    "pages/sign/sign",
+    "pages/ticket/ticket",
+    "pages/myshare/myshare",
+    "pages/friends/friends",
+    "pages/share/share",
+    "pages/login/login", 
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "小瓜报名",
+    "navigationBarTextStyle":"black"
+  }
+}

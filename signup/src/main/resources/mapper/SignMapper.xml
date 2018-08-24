@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.coolgua.signup.mapper.SignMapper">
+	<resultMap type="Sign" id="signMap">
+		<id column="id" property="id" />
+		<result column="open_id" property="openId" />
+		<result column="cellphone" property="cellphone" />
+		<result column="name" property="name" />
+		<result column="company" property="company" />
+		<result column="invite_openid" property="inviteOpenid" />
+		<result column="event_id" property="eventId" />
+	</resultMap>
+	
+	<insert id="addData" parameterType="java.util.HashMap">
+		insert into tb_sign (id <foreach collection="fields" item="field">,${field}</foreach>, create_time)
+		values (#{id} <foreach collection="datas" item="data">,#{data}</foreach>, now())
+	</insert>
+	
+	<select id="findUserSignByOpenId" resultMap="signMap" parameterType="java.util.Map">
+		select * from tb_sign where open_id=#{openId} and event_id=#{eventId}
+	</select>
+	
+	<select id="findRanking" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select rank from (
+		    select s.open_id, @currank := @currank + 1 as rank
+		    from tb_sign s, (select @currank := 0) r
+		    where s.event_id=#{eventId}
+		    order by s.invite_num desc, s.create_time
+		) a
+		where a.open_id = #{openId}
+	</select>
+	
+	<select id="findRankAll" parameterType="java.lang.String" resultType="java.util.Map">
+		    select s.open_id, @currank := @currank + 1 as rank
+		    from tb_sign s, (select @currank := 0) r
+		    where s.event_id=#{eventId}
+		    order by s.invite_num desc, s.create_time
+	</select>
+	
+	<select id="getSignInfos" resultType="java.util.Map" parameterType="java.util.Map">
+		select s.name, s.photo, s.cellphone, t.ticket_num, t.ticket_num_url, u.qrcode_url from tb_sign s
+		left join tb_tickets t on s.open_id=t.open_id left join tb_user u on s.open_id=u.open_id
+		where s.open_id=#{openId} and s.event_id=#{eventId} and t.open_id=#{openId} and t.event_id=#{eventId}
+		and u.open_id=#{openId} and u.event_id=#{eventId}
+	</select>
+	
+	<select id="getSameTradeCountByOpenId" resultType="int" parameterType="java.util.Map">
+		select count(1) from tb_sign s where s.invite_openid=#{openId} and s.open_id !=#{openId} and s.event_id=#{eventId}
+	</select>
+	
+	<select id="getSameTradeUsersByOpenId" resultType="java.util.Map" parameterType="java.util.Map">
+		select s.name, s.photo, u.head_imgurl, u.open_id, u.sex from tb_user u left join tb_sign s on u.open_id=s.open_id
+		where invite_openid=#{openId} and u.open_id !=#{openId} and u.event_id=#{eventId} and s.event_id=#{eventId}
+		order by s.create_time desc
+	</select>
+	
+	<update id="updateInviteNum" parameterType="java.util.Map">
+		update tb_sign set invite_num = invite_num + 1
+		where open_id=#{openId} and event_id=#{eventId}
+	</update>
+	
+	<update id="updateInviteEnterTimes" parameterType="java.util.Map">
+		update tb_sign set invite_enter_times = invite_enter_times + 1
+		where open_id=#{openId} and event_id=#{eventId}
+	</update>
+	
+	<select id="findAttentionRanking" parameterType="java.util.Map" resultType="int">
+		select rank from (
+		    select s.open_id, @currank := @currank + 1 as rank
+		    from tb_sign s, (select @currank := 0) r
+		    where s.event_id=#{eventId}
+		    order by s.invite_enter_times desc, s.create_time
+		) a
+		where a.open_id = #{openId}
+	</select>
+	
+	<select id="findAttentionRankAll" parameterType="java.lang.String" resultType="java.util.Map">
+		    select s.open_id, @currank := @currank + 1 as rank
+		    from tb_sign s, (select @currank := 0) r
+		    where s.event_id=#{eventId}
+		    order by s.invite_enter_times desc, s.create_time
+	</select>
+	
+	<select id="checkRegister" resultType="int" parameterType="java.util.Map">
+		select count(*) from tb_sign where open_id=#{openId} and event_id=#{eventId}
+	</select>
+</mapper>

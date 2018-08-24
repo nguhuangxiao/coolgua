@@ -1,0 +1,51 @@
+ul{margin: 0px;padding: 0px}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, menu, nav, section{
+  display: block
+}
+
+body{
+  margin:0;
+  font-size: 14px
+}
+blockquote, q{
+  quotes: none
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after{
+  content: none
+}
+table{
+  border-collapse: collapse;
+  border-spacing: 0
+}
+/* custom */
+
+a{
+  color: #ffa800;
+  -webkit-backface-visibility: hidden;
+  text-decoration: none
+}
+a:hover{
+    color: #ffa800;
+}
+ol, ul, dl {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 0px;
+  margin: 0;
+}
+body{
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+input[type=button]{outline: none;}
+
+
+*{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

@@ -1,0 +1,51 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="su-wrapper">
+  <view class="su-banner">
+    <image src="./img/banner.jpg" mode='widthFix'></image>
+  </view>
+
+  <view class="item">
+    <view class="su-container">
+      <text class="su-title">{{form.title}}</text>
+      <view class="su-ctem ctem-top">
+          <text class="icon iconfont icon-browse"></text>{{form.clickNum}}
+          <text class="icon iconfont icon-share"></text>{{form.shareNum}}
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="su-container">
+      <view class="su-ctem">
+          <text class="icon iconfont icon-time"></text>
+          {{form.startTime}} - {{form.endTime}}
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="su-container">
+      <view class="su-ctem">
+          <text class="icon iconfont icon-coordinates"></text>{{form.address}}
+      </view>
+    </view>
+  </view>
+
+  <view class="item">
+    <view class="su-container">
+      <view>
+         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>
+    </view>
+  </view>
+  
+  <view class="toolbar">
+    <view class="su-container">
+      <button class="btn Normal" bindtap="immediatelySignUp">立即报名</button>
+      <button class="btn">分享</button>
+    </view>
+  </view>
+  
+
+  
+</view>

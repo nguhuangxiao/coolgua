@@ -1,0 +1,51 @@
+<view class="su-wrapper">
+  <view class="bg-banner" style="background:{{color}}">
+    <image src="../../common/img/bg.png" class="bgpic" mode='widthFix'></image>
+    <view class="title share-title">{{title}}</view>
+  </view>
+
+  <view class="myshare-main">
+    <view class="item current-item">
+      <view class="current-person {{byInviteUser ? 'center' : 'start'}}" >
+        <view class="list p1">
+          <block wx:if="{{photo}}">
+            <image src="{{photo}}" class="logo" mode='widthFix'></image>
+          </block>
+          <block wx:else>
+            <image src="{{userInfo.avatarUrl}}" class="logo" mode='widthFix'></image>
+          </block>
+          <text>{{userInfo.nickName}}</text>
+        </view>
+        <view class="list plt" wx:if="{{byInviteUser}}">
+          <image src="../../common/img/leftbtn.png" mode='widthFix' class="leftbtn"></image>
+        </view>
+        <view class="list p2" wx:if="{{byInviteUser}}"> 
+          <image src="{{byInviteUser.headImgurl}}" mode='widthFix' class="logo byInvateLogo"></image>
+          <text>{{byInviteUser.nickName}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="item friend-item kid-item">
+      <view class="info">
+        <view>受邀好友<text class="tongxing">{{sameTrade}}</text></view>
+      </view>
+      <view class="friend" >
+        <view class="person" wx:for="{{inviteUser}}" wx:key="{{item.index}}">
+          <block wx:if="{{item.photo}}">
+            <image src="{{item.photo}}" mode='widthFix' class="mlogo"></image>
+          </block>
+          <block wx:else>
+            <image src="{{item.head_imgurl}}" mode='widthFix' class="mlogo"></image>
+          </block>
+          <text>{{item.name}}</text>
+        </view>   
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+

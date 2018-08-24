@@ -1,0 +1,13 @@
+INSERT INTO tb_field VALUES ('0', 'cellphone', '0');
+INSERT INTO tb_field VALUES ('1', 'name', '0');
+INSERT INTO tb_field VALUES ('2', 'company', '0');
+INSERT INTO tb_field VALUES ('3', 'department', '0');
+INSERT INTO tb_field VALUES ('4', 'position', '0');
+INSERT INTO tb_field VALUES ('5', 'address', '0');
+INSERT INTO tb_field VALUES ('6', 'email', '0');
+INSERT INTO tb_field VALUES ('7', 'telephone', '0');
+INSERT INTO tb_field VALUES ('8', 'sex', '0');
+INSERT INTO tb_field VALUES ('9', 'country', '0');
+INSERT INTO tb_field VALUES ('10', 'province', '0');
+INSERT INTO tb_field VALUES ('11', 'city', '0');
+INSERT INTO tb_field VALUES ('12', 'photo', '2');

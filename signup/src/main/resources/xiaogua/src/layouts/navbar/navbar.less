@@ -1,0 +1,35 @@
+@import "../../common/less/variables.less";
+.navbar{
+  width: 100%;
+  line-height: 75px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  .title{
+    position: relative;
+    padding-left: 18px;
+    display: inline-block;
+    margin-right: 30px;
+    a{
+      color: #666
+    }
+  }
+  .title:after {
+    content: '';
+    width: 7px;
+    height: 25px;
+    background: #666;
+    display: block;
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 25px;
+  }
+  .title.active{
+    a{
+      color: @color;
+    }
+  }
+  .title.active:after {
+    background: @color;
+  }
+}

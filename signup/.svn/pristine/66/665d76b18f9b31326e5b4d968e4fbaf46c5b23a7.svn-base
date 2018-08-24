@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coolgua.signup.mapper.LogMapper">
+
+	<resultMap type="com.coolgua.signup.domain.Log" id="LogMap">
+		<id property="id" column="id" />
+		<result property="userId" column="user_id" />
+		<result property="openId" column="openid" />
+		<result property="sessionkey" column="sessionkey" />
+		<result property="state" column="state" />
+		<result property="indate" column="indate" />
+		<result property="outDate " column="outdate" />
+		<result property="inviteOpenId" column="invite_openid" />
+		<result property="eventId" column="event_id" />
+	</resultMap>
+
+	<sql id="key">
+		<!-- 去掉最后一个, -->
+		<trim suffixOverrides=",">
+			<if test="userId !=null and userId != '' ">
+				user_id,
+			</if>
+			<if test="openId !=null and openId != ''">
+				openid,
+			</if>
+			<if test="sessionKey !=null and sessionKey != ''">
+				sessionkey,
+			</if>
+			<if test="state !=null and state != ''">
+				state,
+			</if>
+			<if test="inDate !=null ">
+				indate,
+			</if>
+			<if test="outDate !=null ">
+				outdate,
+			</if>
+			<if test="inviteOpenId !=null and inviteOpenId != ''">
+				invite_openid,
+			</if>
+			<if test="eventId !=null and eventId != ''">
+				event_id,
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="value">
+		<!-- 去掉最后一个, -->
+		<trim suffixOverrides=",">
+			<if test="userId !=null and userId != ''">
+				#{userId},
+			</if>
+			<if test="openId !=null and openId != ''">
+				#{openId},
+			</if>
+			<if test="sessionKey !=null and sessionKey != ''">
+				#{sessionKey},
+			</if>
+			<if test="state !=null and state != ''">
+				#{state},
+			</if>
+			<if test="inDate !=null  ">
+				<!-- date(inDate) = date(#{inDate,jdbcType=DATE}) -->
+				#{inDate},
+			</if>
+			<if test="outDate !=null ">
+				<!-- date(outDate) = date(#{outDate,jdbcType=DATE}) -->
+				#{outDate},
+			</if>
+			<if test="inviteOpenId !=null and inviteOpenId != ''">
+				#{inviteOpenId},
+			</if>
+			<if test="eventId !=null and eventId != ''">
+				#{eventId},
+			</if>
+		</trim>
+	</sql>
+	
+	<insert id="saveLog">
+		<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey>
+		insert into tb_log (id,
+		<include refid="key" />
+		)
+		values(#{id},
+		<include refid="value" />
+		)
+	</insert>
+
+	<select id="selectCount" resultType="int" parameterType="java.lang.String">
+		select count(*) from tb_log where event_id=#{eventId}
+	</select>
+	
+	<select id="findStatisticsCount" resultType="int" parameterType="java.util.Map">
+		select count(*) from tb_log where invite_openid=#{openId} and openid != invite_openid and event_id=#{eventId}
+	</select>
+</mapper>

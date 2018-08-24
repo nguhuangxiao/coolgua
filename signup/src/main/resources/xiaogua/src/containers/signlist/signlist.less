@@ -1,0 +1,147 @@
+.main-flex{
+  display: flex;
+}
+.register-main{
+  background: #fff;
+  .toolbar{
+    padding: 15px 20px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    justify-content: space-between;
+  }
+  .register-list{
+    a{text-decoration: none;}
+    >ul{
+      list-style: none;
+      margin-bottom: 0px;
+      >li{
+        display: flex;
+        margin: 20px 0;
+        border-bottom: 1px dashed #f1f1f1;
+        padding-bottom: 20px;
+        .ant-checkbox-wrapper{
+          width: 94px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .register-card{
+          width: 729px;
+          background: url('../../common/image/register-bg.jpg') no-repeat;
+          height: 174px;
+          padding: 10px;
+          .inner{
+            display: flex;
+            align-items: center;
+            height: 154px;
+            >img.pic1{
+              width: 125px;
+              height: 125px;
+              display: block;
+            }
+            >img.pic2{
+              width: 125px;
+              height: 156px;
+              display: block;
+            }
+            .info{
+              display: flex;
+              flex-direction: column;
+              margin-left: 25px;
+              width: 550px;
+              .info-top{
+                display: flex;
+                justify-content: space-between;
+                .top-contact{
+                  p{
+                    margin:0px;
+                    color: #000;
+                    font-size: 15px;
+                    line-height: 22px;
+                    height: 22px;
+                  }
+                  .small-txt{
+                    margin: 5px 0;
+                    line-height: 20px;
+                    color: #373839;
+                  }
+                  .small-txt>p{
+                    font-size: 12px;
+                  }
+                }
+                .top-takit{
+                  .takit-bg{
+                    background: #e23a4f;
+                    color: #fff;
+                    padding: 5px;
+                    font-size: 12px;
+                  }
+                  .invite-user{
+                    border: 2px solid #fdbc3f;
+                    background: #f7ead3;
+                    padding: 5px;
+                    font-size: 12px;
+                    margin-top: 20px;
+                    text-align: center;
+                    color: #373839;
+                  }
+                }
+              }
+              .info-bottom{
+                ol{
+                  display: flex;
+                  padding: 5px;
+                  background: rgba(255,255,255,0.6);
+                  box-shadow: 0px 0px 3px #e8e7e7;
+                  font-size: 13px;
+                  color: #373839;
+                  list-style: none;
+                  li{
+                        margin-right: 20px;
+                  }
+                  >li>span{
+                    font-weight: bold;
+                    font-size: 16px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .register-card:hover{
+          box-shadow: 0px 0px 10px #e8e7e7;
+        }
+      }
+    }
+  }
+  .pagination{
+    text-align: center;
+    margin-top: 100px;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  .xinbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    >img{
+      margin-right: 5px;
+      width: 20px;
+    }
+  }
+  .list-no-data{
+    >img{width: 150px;}
+    text-align: center;
+    display: flex;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #dbd7d7;
+    flex-direction: column;
+    height: 400px;
+    >p{margin-top: 20px;}
+  }
+}

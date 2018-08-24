@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit"/>
+	<script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://reg.coolgua.net/plugin/iColorPicker.js"></script>
+	<title>小瓜报名</title>
+<link href="/style.css" rel="stylesheet"></head>
+<body>
+  <div id="root"></div>
+<script type="text/javascript" src="/vendor.bundle.js"></script><script type="text/javascript" src="/bundle-d11507211957cb0438a8.js"></script></body>
+</html>

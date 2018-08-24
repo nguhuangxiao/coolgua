@@ -1,0 +1,66 @@
+<view class="su-wrapper" id="su-wrapper" wx:if="{{shareImg1}}">
+  <scroll-view scroll-y style="height: {{height}}">
+    <view class="su-container su-ticket">
+      <view class="person">
+        <block wx:if="{{photo}}">
+          <image src="{{photo}}" class="avator" mode='widthFix'></image>
+        </block>
+        <block wx:else>
+          <image src="{{avatarUrl}}" class="avator" mode='widthFix'></image>
+        </block>
+        
+        <view class="user-info">
+          <text class="name">{{nickName}}邀请您一起参加</text>
+          <text class="zh">{{company}}</text>
+        </view>
+      </view>
+      <view class="picture-box">
+        <image src="{{banner}}" class="banner" mode='widthFix'></image>
+      </view>
+
+      <view class="introduce">
+        <view class="title">{{title}}</view>
+        <view class="su-ctem">
+            <text class="icon-time" style="color:{{color}}" id="time" ref="time"></text>
+            
+            {{startTime}} 至 {{endTime}}
+        </view>
+        <view class="su-ctem">
+            <text class="icon-address" style="color:{{color}}" id="address" ref="address"></text>
+            {{country}}{{province}}{{city}}{{address}}
+        </view>
+      </view>
+
+      <view class="company-qcode-box showstatus {{canShow}}">
+        <image src="{{qrcode}}" mode='widthFix' class="company-qcode"></image>
+        <view class="mask-logo">
+          <view class="mask-box"></view>
+
+          <block wx:if="{{photo}}">
+            <image src="{{photo}}" mode='widthFix' bindload="imageLoad" class="showstatus {{canShow}}"></image>
+          </block>
+          <block wx:else>
+            <image src="{{avatarUrl}}" mode='widthFix' bindload="imageLoad" class="showstatus {{canShow}}"></image>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="share-tool" wx:if="{{shareImg1}}">
+  <text class="tip">分享活动卡片给好友</text>
+  <view class="share-box">
+    <view class="share-icon">
+      <image src="../../common/img/weixin.png" mode='widthFix' style="background:{{color}}"></image>微信好友
+      <button open-type="share" class="open-share-btn" plain="true" bindtap="shareCount"></button>
+    </view>
+    <view class="share-icon" bindtap="tabShareImg2">
+      <image src="../../common/img/quan.png" mode='widthFix' style="background:{{color}}"></image>朋友圈
+    </view>
+  </view>
+</view>
+<!--微信好友-->
+<canvas canvas-id="shareImg1" class="shareImg1"></canvas>
+<!--朋友圈-->
+<canvas canvas-id="shareImg2" class="shareImg2"></canvas>

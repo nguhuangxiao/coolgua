@@ -1,0 +1,30 @@
+
+<template name="tabbar">
+  <view class="tabbar">
+    <view class="tab-main">
+      <view class="flex-tab">
+        <view class="tab-share" bindtap="goPage" data-url="../share/share">
+          <image src="../../common/img/share1.png" mode='widthFix'></image>
+         
+          <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="userinfobtn">分享</button>
+        </view>
+      </view>
+      <view class="flex-tab">
+        <view class="tab-ticket" wx-if="{{userLogin}}" bindtap="goPage" data-url="../ticket/ticket">
+          <image src="../../common/img/ticket.png" mode='widthFix'></image>我的门票
+        </view>
+        <view class="tab-ticket" wx-if="{{!userLogin}}" bindtap="immediatelySignUp">
+          <image src="../../common/img/note.png" mode='widthFix'></image>我要报名
+        </view>
+      </view>
+      <view class="flex-tab">
+        <view class="tab-share" wx-if="{{userLogin}}" bindtap="goPage" data-url="../myshare/myshare">
+          <image src="../../common/img/myshare.png" mode='widthFix'></image>我的分享
+        </view>
+      </view>    
+    </view>
+  </view>
+</template>
+
+
+

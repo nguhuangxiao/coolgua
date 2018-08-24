@@ -1,0 +1,66 @@
+server.port=7080
+
+spring.http.encoding.force=true
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true
+server.tomcat.uri-encoding=UTF-8
+
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/signup?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+jdbc.username=root
+jdbc.password=Coolgua@123456
+
+mybatis.typeAliasesPackage=com.coolgua.signup.domain
+mybatis.mapperLocations=classpath:mapper/*.xml
+
+anti.sql=exec|execute|insert|select|delete|update|count|drop|chr|mid|master|truncate|char|declare|sitename|net user|xp_cmdshell|create|table|from|grant|use|group_concat|column_name|information_schema.columns|table_schema|union|where|order|like
+anti.xss=script|iframe|onclick|onfocus|alert|console
+anti.ignore=form|content
+
+spring.jackson.time-zone=GMT+8
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.joda-date-time-format=yyyy-MM-dd HH:mm:ss
+
+spring.redis.database=0
+spring.redis.host=127.0.0.1
+spring.redis.port=6379
+spring.redis.password=coolgua
+spring.redis.jedis.pool.max-idle=8
+spring.redis.jedis.pool.max-wait=-1
+spring.redis.jedis.pool.min-idle=0
+spring.redis.timeout=5000
+
+#\u4f53\u9a8c\u7248
+appID=wx12cd02a958e63d2c
+appSecret=899e05ff9a6e5f3e350fe4e6f505b8a7
+
+#\u6b63\u5f0f\u7248
+#appID=wx12cd02a958e63d2c
+#appSecret=899e05ff9a6e5f3e350fe4e6f505b8a7
+
+ossServerUrl=http://oss.coolgua.com
+smsServerUrl=http://sms.coolgua.com:202
+
+smspassword=D6879EE4822F8C45A9AB37EDABA297EB
+smsaccount=testpay
+
+SSO_BASE_URL=http://127.0.0.1:8080
+
+UPLOAD_DIR=d:/home/upload/
+XIAOGUA_URL=http://localhost:7088/
+
+#com.mycompany.mavenspringboot.controller 日志 WARN级别输出
+logging.level.com.coolgua.signup.controller=WARN
+#com.mycompany.mavenspringboot.mapper sql日志 DEBUG级别输出
+logging.level.com.coolgua.signup.mapper=DEBUG
+logging.level.root=WARN
+logging.level.org.springframework.web=DEBUG
+logging.level.org.apache.ibatis=DEBUG
+logging.level.com.ibatis=DEBUG
+logging.level.java.sql=DEBUG
+logging.level.java.sql.Statement=DEBUG
+logging.level.java.sql.PreparedStatement=DEBUG
+logging.level.java.sql.ResultSet=DEBUG
+logging.file=e:/tmp/logs/spring-wxreg.log
+logging.pattern.console=%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n
+logging.pattern.file=%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n

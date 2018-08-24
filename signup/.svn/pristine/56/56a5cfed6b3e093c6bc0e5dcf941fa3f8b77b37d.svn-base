@@ -1,0 +1,122 @@
+@import "./reset.less";
+@import "./variables.less";
+@import "./icon.less";
+body{
+  background:#ebebeb!important;
+  height: 100%;
+}
+.containner{
+  width: 1128px;
+  margin: 0 auto;
+}
+.wrapper{
+  padding-top: 20px;
+}
+
+.input[type=text]{
+  width: 189px;
+  height: 23px;
+  border: 1px solid #c1b9b9;
+  padding-left: 5px;
+}
+.btn {
+  color: #ffa800;
+  text-decoration: none;
+  font-size: 14px;
+  min-width: 114px;
+  text-align: center;
+  border: 1px solid #7cc623;
+  border-radius: 3px;
+  margin: 0 5px;
+  background: #fff;
+  padding: 7px 10px;
+  cursor: pointer;
+  border: none;
+  background: #ffa800;
+  color: #fff;
+  outline: none;
+}
+.btn.nbtn{
+    color: #373839;
+    font-size: 13px;
+}
+.return-btn{
+  border: 1px solid #ffa800;
+  padding: 5px 20px;
+  color: #ffa800;
+}
+.return-btn:hover{
+  color: #ffa800;
+}
+.return-btn:hover{text-decoration: none;}
+.select {
+  width: 196px;
+  height: 27px;
+}
+.wrapper-main{
+    margin-left: 247px;
+    background: #fff;
+    box-shadow: 0 0 3px #dcd8d8;
+    overflow: hidden;
+    min-height: 380px;
+    .toolbar{
+      min-height: 28px;
+      padding: 13px 20px;
+      border-top: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+}
+.loading-container{
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.side-main{
+  width: 851px;
+  margin-left: 27px;
+}
+
+/**ant design重置样式**/
+.ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+    background-color: #ffa800;
+}
+
+
+
+.flex-pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .ant-pagination {
+    display: inline-block;
+  }
+  .totle-num{
+    outline: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #d9d9d9;
+    border-top-width: 1.02px;
+    -webkit-transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    height: 32px;
+    position: relative;
+    line-height: 32px;
+    width: 94px;
+  }
+  .totle-num:hover{
+    border-color: #ffa800;
+  }
+}
+
+.bread-nav{
+  margin-bottom: 27px;
+}

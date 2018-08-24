@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coolgua.signup.mapper.AreaMapper">
+	<resultMap id="CountryResultMap" type="com.coolgua.signup.domain.Country">
+		<id column="id" jdbcType="VARCHAR" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="english" jdbcType="VARCHAR" property="english"/>
+		<result column="area" jdbcType="VARCHAR" property="area"/>
+		<result column="abbreviation" jdbcType="VARCHAR" property="abbreviation"/>
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+		<result column="pinyin_short" jdbcType="VARCHAR" property="pinyinShort"/>
+	</resultMap>
+	<resultMap id="ProvinceResultMap" type="com.coolgua.signup.domain.Province">
+		<id column="id" jdbcType="VARCHAR" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="english" jdbcType="VARCHAR" property="english"/>
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+		<result column="pinyin_short" jdbcType="VARCHAR" property="pinyinShort"/>
+	</resultMap>
+	<resultMap id="CityResultMap" type="com.coolgua.signup.domain.City">
+		<id column="id" jdbcType="VARCHAR" property="id"/>
+		<result column="name" jdbcType="VARCHAR" property="name"/>
+		<result column="english" jdbcType="VARCHAR" property="english"/>
+		<result column="province_id" jdbcType="VARCHAR" property="provinceId"/>
+		<result column="pinyin" jdbcType="VARCHAR" property="pinyin"/>
+		<result column="pinyin_short" jdbcType="VARCHAR" property="pinyinShort"/>
+	</resultMap>
+	<select id="getCountries" resultMap="CountryResultMap">
+		select * from tb_country
+	</select>
+	<select id="getProvinces" resultMap="ProvinceResultMap">
+		select * from tb_province
+	</select>
+	<select id="getCities" resultMap="CityResultMap">
+		select * from tb_city where province_id = (select id from tb_province where name = #{name})
+	</select>
+</mapper>

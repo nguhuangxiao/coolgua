@@ -1,0 +1,720 @@
+AppID(小程序ID) wx902b081ec788f4de
+AppSecret(小程序密钥) 9d3eb5c9d31adbe36cdbb59a73d18d42
+
+1、用户授权
+ /userinfo/vote   [POST]
+ request:{"code":"xxxxx","nickname":"nickname","headimgurl":"headimgurl","sex":"sex","inviteOpenId":"inviteOpenId","eventId":"eventId"}
+ resonse:{
+  "msg": true,
+  "showcount": 1,
+  "sharecount": 5,
+  "openid": "oUWye4k3PYq6-vl6Q1YYEugtUH4M",
+  "session_key": "IgPzSdfVnQHci6C2rW27GQ==",
+  "restigerStatus": 0,
+  "userid": "4212fc0a632411e88d990021cc5ce8dd",
+  "status": 1
+}
+ 
+2、获取手机验证码
+  /register/phone [POST]
+  request : {"phone" : "15010496837"}
+  response:{ "success": true, "token": "060df55ec4790efa1e6dfd561750dc87ac0908d330b38095e26d2a181b3e6395" }
+  
+3、验证码校验
+  /register/verify  [POST]
+  request : {"phone" : "15010496837","codeNum":"236518"}
+  response:{ "success": true}
+  
+4 报名  /register/information   有两个参数, 如下
+  request:{
+    "data": {"invite_openid":"ohjKK5apJzdKGqOj-jB6DCAYEkrj","event_id":"f8175aff76c549d4a00eb9aa20c6301c","open_id":"ohjKK5apJzdKGqOj-jB6DCAYEkrM","aiDi_":"iphonx","name":"武德","cellphone":"13399998888","company":"苹果公司","vOKI_":"白酒馆"},
+    "code": "code" 
+  }
+  response:{
+  "msg": true,
+  "serialNumber": "052794138",-------报名编号
+  "openId": "oUWye4k3PYq6-vl6Q1YYEugtUH4M",
+  "qrCodeUrl": "图片地址",
+  "cellphone": "15993651286",
+  "name": "zzz"
+}
+5 点击分享
+  /invite/share
+  request:{"openId":"openId","eventId":"eventId"}
+    response:{
+  "qrCodeUrl": "图片地址",
+  "userHeadPicUrl": "头像地址",
+  "userName": "aaa"}
+  
+6 点击微信好友或者朋友圈
+  /invite/shareNum
+  request:{"openId":"openId","eventId":"eventId"}
+  response:{
+  "msg": true
+  }
+  
+7 获取好友分享数量 与排名
+  /invite/sametrade
+  request:{"openId":"openId","eventId":"eventId"}
+  response:{
+  "success": true,
+  "userName": "zzz",     ----用户名称
+  "userHeadPicUrl": "a.jpg",----头像地址
+  "byInviteUser":byInviteUser  ---邀请我的用户对象
+  "sameTrade": 3,        ----同行好友个数   
+  "inviteRanking":inviteRanking,邀请排名  
+  "invitAttentionCount": 0,  -----关注 的好友 个数   邀请的次数
+  "shareRanking": 1,     ------  分享排行
+  "inviteUser": 
+    {
+      "userId": "aaaa",
+      "headImgurl": null,
+      "nickName": "sasa",
+      "sex": null,
+      "weiXin": null,
+      "openId": "cz",
+      "inviteTickets": null,
+      "createTime": null,
+      "shareNum": 5,
+      "ticketsNum": null,
+      "restigerStatus": null
+    },
+    {
+      "userId": "afbb54eb64b511e8a8680021cc5ce8dd",
+      "headImgurl": "a.jpg",
+      "nickName": "aaa",
+      "sex": "男",
+      "weiXin": null,
+      "openId": "oUWye4k3PYq6-vl6Q1YYEugtUH4M",
+      "inviteTickets": null,
+      "createTime": 1527759225000,
+      "shareNum": 3,
+      "ticketsNum": null,
+      "restigerStatus": 1
+    },
+    {
+      "userId": "sasd",
+      "headImgurl": "x",
+      "nickName": "aaaz",
+      "sex": null,
+      "weiXin": null,
+      "openId": "zz",
+      "inviteTickets": null,
+      "createTime": null,
+      "shareNum": 2,
+      "ticketsNum": null,
+      "restigerStatus": null
+    }
+  ]
+}
+
+8 获取报名数据 
+/register/getinfo   [POST]
+ request: {"openId":"oUWye4nkCbylOwzoApzt5l0euTyg","eventId":"eventId"}
+ resonse:{
+    "msg": true,
+    "serialNumber": "324089651",
+    "openId": "oUWye4nkCbylOwzoApzt5l0euTyg",
+    "qrCodeUrl": "upload/20180606/144543/e8797d73a86e4f98993d10c1a52b584a.jpg",
+    "userPhone": "13311112222",
+    "username": "ww"
+}
+
+9、小程序打开和分享数查询
+ /userinfo/getvote   [POST]
+ request: {"code":"011ah9220sbraF19gS020st7220ah92x","eventId":"eventId"}
+ resonse:{
+    "msg": true,
+    "showcount": 214,
+    "sharecount": 20,
+    "sign": true
+ }
+
+10、获取国家、省、市的接口 （与替他秀一致）
+/area/country
+/area/province
+/area/city?name=江西省
+
+11、新建活动
+/event/saveEvent?name=2018中国劳动保护用品交易会&eventTime=2018-09-09~2018-10-10&registerStartTime=2018-07-08 09:30&registerEndTime=2018-07-10 09:30&country=中国&province=北京市&city=北京&address=北京市海淀区上地东路5-2&orgId=193&creator=贺佳
+提交方式： POST
+返回值：
+{
+    "code": 200
+}
+
+12、查询活动列表
+/event/getEvents/{orgId}    示例： /event/getEvents/193
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "events": [
+        {
+            "id": "91623037843c11e889990021cc67da23",
+            "name": "2018中国劳动保护用品交易会",
+            "eventTime": "2018-09-09~2018-10-10",
+            "registerStartTime": "2018-07-08 09:30",
+            "registerEndTime": "2018-07-10 09:30",
+            "country": "中国",
+            "province": "北京市",
+            "city": "北京",
+            "address": "北京市海淀区上地东路5-2",
+            "banner": null,
+            "introduce": null,
+            "color": null,
+            "orgId": 193,
+            "creator": "贺佳",
+            "createTime": "2018-07-10 20:27:14",
+            "editor": null,
+            "editTime": null,
+            "status": 1,  -- 0未开始, 1正在进行, 2已完成
+            "logo": "https://reg.coolgua.net/xiaogua/193/20180712/20180712205530752.jpg"
+        }
+    ]
+}
+
+13、获取活动详情
+/event/getEventById/{orgId}/{eventId}   示例：/event/getEventById/193/91623037843c11e889990021cc67da23
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "event": {
+        "id": "91623037843c11e889990021cc67da23",
+        "name": "2018中国劳动保护用品交易会",
+        "eventTime": "2018-09-09~2018-10-10",
+        "registerStartTime": "2018-07-08 09:30",
+        "registerEndTime": "2018-07-10 09:30",
+        "country": "中国",
+        "province": "北京市",
+        "city": "北京",
+        "address": "北京市海淀区上地东路5-2",
+        "banner": null,
+        "introduce": null,
+        "color": null,
+        "orgId": 193,
+        "creator": "贺佳",
+        "createTime": "2018-07-10 20:27:14",
+        "editor": null,
+        "editTime": null,
+        "status": 1,
+        "logo": "https://reg.coolgua.net/xiaogua/193/20180712/20180712205530752.jpg"
+    }
+}
+
+14、上传banner
+/event/uploadBanner/{orgId}/{fp}  示例： /event/uploadBanner/193/abcd/1
+request:{"eventId":"eventId"} 可选, 如果eventId参数有值，那么返回的path会自动保存到该evnetId对应活动的logo字段中
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": {
+        "path": "https://reg.coolgua.net/xiaogua/193/20180712/20180712205530752.jpg",
+        "uploadExt": ".jpg"
+    },
+    "message": "",
+    "data": null
+}
+
+15、报名列表
+/event/registers/{eventId}  示例： /event/registers/55d4a4a388c411e8b8450021cc67da23
+request:{"page":1, "size":20}
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": {
+        "page": {
+            "pageNum": 1,
+            "pageSize": 2,
+            "size": 2,
+            "startRow": 0,
+            "endRow": 1,
+            "total": 2,
+            "pages": 1,
+            "list": [
+                {
+                    "id": "1",
+                    "eventId": null,
+                    "openId": null,
+                    "createTime": null,
+                    "name": "木2",
+                    "cellphone": "13355557777",
+                    "company": "coolgua",
+                    "department": "产品",
+                    "position": "产品经理",
+                    "address": "京蒙高科",
+                    "email": "wude@coolgua.com",
+                    "telephone": "33339999",
+                    "gender": 1,
+                    "country": "中国",
+                    "province": "北京",
+                    "city": "北京",
+                    "photo": "http://www.aa.com/1.jpg",
+                    "inviter": null,
+                    "inviteNum": null,
+                    "inviteRank": null,
+                    "effect": null,
+                    "effectRank": null,
+                    "shareNum": null
+                },
+                {
+                    "id": "2",
+                    "eventId": null,
+                    "openId": null,
+                    "createTime": null,
+                    "name": "夏木木",
+                    "cellphone": "13355557777",
+                    "company": "coolgua",
+                    "department": "产品",
+                    "position": "产品经理",
+                    "address": "京蒙高科",
+                    "email": "wude@coolgua.com",
+                    "telephone": "33339999",
+                    "gender": 1,
+                    "country": "中国",
+                    "province": "北京",
+                    "city": "北京",
+                    "photo": "http://www.aa.com/1.jpg",
+                    "inviter": null,
+                    "inviteNum": null,
+                    "inviteRank": null,
+                    "effect": null,
+                    "effectRank": null,
+                    "shareNum": null
+                }
+            ],
+            "prePage": 0,
+            "nextPage": 0,
+            "isFirstPage": true,
+            "isLastPage": true,
+            "hasPreviousPage": false,
+            "hasNextPage": false,
+            "navigatePages": 8,
+            "navigatepageNums": [
+                1
+            ],
+            "navigateFirstPage": 1,
+            "navigateLastPage": 1,
+            "firstPage": 1,
+            "lastPage": 1
+        }
+    },
+    "message": "",
+    "data": null
+}
+
+16、获取小程序码scene的值
+/event/scene/{scene}    如：  /event/scene/11
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": null,
+    "message": "",
+    "data": {
+        "id": "11",
+        "eventId": "abcd",
+        "openId": "ohjKK5apJzdKGqOj-jB6DCAYEkrM"
+    }
+}
+
+17、统计分析接口
+/event/report/{eventId}    如：  /event/report/f8175aff76c549d4a00eb9aa20c6301c
+request:{
+  "type": "basic",    -- basic 基础分析,  effect 影响力排行, invite 邀请排行
+  "dim": "day",       -- 统计维度： day 日, month 月
+  "startTime": "2018-07-12 09:30",
+  "endTime": "2018-07-24 17:30"
+}
+提交方式：POST
+a) 基础分析返回值：
+按日示例  /event/report/ce70d2d482104fac8033a46ca94aae61?type=basic&dim=day  返回值
+{
+    "code": 200,
+    "list": null,
+    "map": null,
+    "message": "",
+    "data": {
+        "chartDatas": [
+            {
+                "showcount": 0,
+                "convertrate": "0.00%",
+                "sharecount": 0,
+                "time": "2018-07-22",
+                "regcount": 0
+            },
+            {
+                "showcount": 40,
+                "convertrate": "0.00%",
+                "sharecount": 2,
+                "time": "2018-07-23",
+                "regcount": 0
+            }
+        ],
+        "showcount": 40,
+        "convertrate": "0.00%",
+        "sharecount": 0,
+        "days": [
+            "2018-07-22",
+            "2018-07-23"
+        ],
+        "startTime": "2018-07-22 11:17",
+        "endTime": "2018-07-23 11:17",
+        "regcount": 0
+    }
+}
+
+按月示例  /event/report/51b9b3bda6774c9bbc9dfac4e9704d3d?type=basic&dim=month  返回值
+{
+    "code": 200,
+    "list": null,
+    "map": null,
+    "message": "",
+    "data": {
+        "chartDatas": [
+            {
+                "showcount": 62,
+                "convertrate": "4.84%",
+                "sharecount": 10,
+                "time": "2018-07",
+                "regcount": 3
+            }
+        ],
+        "showcount": 62,
+        "convertrate": "4.84%",
+        "sharecount": 3,
+        "days": [
+            "2018-07"
+        ],
+        "regcount": 3
+    }
+}
+
+b) 影响力排行返回值：
+{
+    "code": 200,
+    "list": [
+        {
+            "openid": "ohjKK5b2IBR8-IW2pWadyJu6EiK4",
+            "effect": 160,
+            "name": "武德",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/ajUibIWawv65WEBPdgOwD71iaica0iaCkpmTQATBy5Iicfq6w3ZATn2iaibJibuuPxHHufoibPQqQNQicaibnjldgP2yvoq8w/132"
+        },
+        {
+            "openid": "ohjKK5Z4t6tnOh4nRquPzruNo7wo",
+            "effect": 2,
+            "name": "贺佳",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erz3doYEdMR03PgdjOXMkxg1qHcGJfgIeG3sA4HXN4WzXrD5DmXkNcxJicYqbict9IAibuDsDDYSITEA/132"
+        }
+    ],
+    "map": null,
+    "message": "",
+    "data": null
+}
+
+c) 邀请排行返回值：
+{
+    "code": 200,
+    "list": [
+        {
+            "open_id": "ohjKK5b2IBR8-IW2pWadyJu6EiK4",
+            "name": "武德",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/ajUibIWawv65WEBPdgOwD71iaica0iaCkpmTQATBy5Iicfq6w3ZATn2iaibJibuuPxHHufoibPQqQNQicaibnjldgP2yvoq8w/132",
+            "invite_num": 0
+        },
+        {
+            "open_id": "oUWye4mVYifBpwFtqv-tVR8M7YaU",
+            "name": "黄潇",
+            "invite_num": 0
+        },
+        {
+            "open_id": "ohjKK5Z4t6tnOh4nRquPzruNo7wo",
+            "name": "贺佳",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erz3doYEdMR03PgdjOXMkxg1qHcGJfgIeG3sA4HXN4WzXrD5DmXkNcxJicYqbict9IAibuDsDDYSITEA/132",
+            "invite_num": 0
+        }
+    ],
+    "map": null,
+    "message": "",
+    "data": null
+}
+
+18、上传文件
+/event/uploadFile/{eventId}  示例： /event/uploadFile/3a30a87e08dc49df9300669022fc4105
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": {
+        "path": "https://reg.coolgua.net/xiaogua/193/20180712/20180712205530752.jpg",
+        "uploadExt": ".jpg"
+    },
+    "message": "",
+    "data": null
+}
+19、导出报名列表
+/event/exportReg/{eventId}   示例： /event/exportReg/4cfc9d1474c9430e828817c62e7a7c5a
+参数:  ids 值为json格式， 示例：
+  "ids": ["383c6fb30b0045cd83204c48eb4d6ca2", "80b7cf32ddfe4ea5be7dfff113f7b32e", "a276f6c88442469a8df2ab4ec6c19fd8"]
+提交方式：POST
+返回值：
+如果没有数据，则返回下面的提示。 否则直接导出文件
+{
+    "code": 200,
+    "list": null,
+    "map": null,
+    "message": "没有数据可以导出",
+    "data": null
+}
+
+20、报名星系网
+/event/galaxy/{eventId}  示例： /event/galaxy/55d4a4a388c411e8b8450021cc67da23
+参数： openId 可选，为空或者不填，此时表示没有邀请人；不为空时返回邀请人为该openId的报名列表
+    width, 绘图区域的宽度, 如果没有传该参数则默认为 1024
+    height, 绘图区域的高度, 如果没有传该参数则默认为 600
+提交方式：POST
+返回值：
+{
+    "code": 200,
+    "list": [
+        {
+            "image": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725151007350.jpg",
+            "event_id": "51b9b3bda6774c9bbc9dfac4e9704d3d",
+            "open_id": "oUWye4iWMbpKG3HDfvDfo22zn9M4",
+            "name": "贺佳",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83equaiadFcDoH2vg5RAtLb1z5VsiaNsrGtF9HGp4B9QwDUWmD4KvZYDLrTat1b6e8ShnWRXbJ5XRn2yQ/132",
+            "photo": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725151007350.jpg",
+            "id": "c35e1fcdf1c94cbd87e9365dec43f73a",
+            "inviteRank": 1
+        },
+        {
+            "image": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725175556448.jpg",
+            "event_id": "51b9b3bda6774c9bbc9dfac4e9704d3d",
+            "open_id": "oUWye4rB60t1l4dinxsPwYKy_FQ8",
+            "name": "朱",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLCD5IurQjk2ly4P9NHaIqBrxX1qlam6oZxBibtTBXd8H7alicyflkbhPSsWEF5icy984a1uVEI9icJgg/132",
+            "photo": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725175556448.jpg",
+            "id": "82b9595d1443411090e38302a4203508",
+            "inviteRank": 2
+        },
+        {
+            "image": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725182953333.png",
+            "event_id": "51b9b3bda6774c9bbc9dfac4e9704d3d",
+            "open_id": "oUWye4mVYifBpwFtqv-tVR8M7YaU",
+            "name": "换个很过分",
+            "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/bJSIIL4V4pBYbv38DfdQNwOgeX5e3I7cpVicGbxYbviaIg1rltXvR1uYI3FHV4dZw9sjWjo3XsIwMKaicuOXjmvtw/132",
+            "photo": "https://reg.coolgua.net/attachment/51b9b3bda6774c9bbc9dfac4e9704d3d/201807/25/20180725182953333.png",
+            "id": "09b8430587d049b2865acaa3d7a3969d",
+            "inviteRank": 3
+        }
+    ],
+    "map": null,
+    "message": "",
+    "data": null
+}
+
+21、报名详情
+/event/register/{eventId}/{openId}
+示例  https://reg.coolgua.net/event/register/f9402c2ae12a45dda6f8f6dc7bc55495/oUWye4sUBGTr3Gr9OAmjPAWC5OiI
+POST 请求
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": {
+        "topData": [
+            {
+                "chinese": "照片",
+                "dictionary": "",
+                "data": "https://reg.coolgua.net/attachment/f9402c2ae12a45dda6f8f6dc7bc55495/201807/30/20180730151039757yvLI.jpg",
+                "english": "photo",
+                "typeId": 2,
+                "required": 1
+            },
+            {
+                "chinese": "微信头像",
+                "dictionary": null,
+                "data": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKsQ0Up1vSBmticPhjvAF7HFeqgibf6oaRnl8xc8hzcwjf7oAEggxt4zl26ibcyebbFSJicVmtED6sVeQ/132",
+                "english": "head_imgurl",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "姓名",
+                "dictionary": null,
+                "data": "张漂亮",
+                "english": "name",
+                "typeId": 0,
+                "required": 1
+            },
+            {
+                "chinese": "邀请人",
+                "dictionary": null,
+                "data": "贺佳",
+                "english": "inviter",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "手机",
+                "dictionary": null,
+                "data": "18330822191",
+                "english": "cellphone",
+                "typeId": 0,
+                "required": 1
+            },
+            {
+                "chinese": "报名时间",
+                "dictionary": null,
+                "data": "2018-07-30 15:11",
+                "english": "create_time",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "门票号",
+                "dictionary": null,
+                "data": "219583406",
+                "english": "ticket_num",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "门票二维码",
+                "dictionary": null,
+                "data": "https://reg.coolgua.net/ticket/201807/30/9fee619c19824eee83520dda56edc555.png",
+                "english": "ticket_num_url",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "受邀好友",
+                "dictionary": null,
+                "data": 0,
+                "english": "inviteNum",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "邀请排行",
+                "dictionary": null,
+                "data": 4,
+                "english": "inviteRank",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "影响力指数",
+                "dictionary": null,
+                "data": 0,
+                "english": "effect",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "影响力排行",
+                "dictionary": null,
+                "data": 9,
+                "english": "effectRank",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "分享次数",
+                "dictionary": null,
+                "data": 1,
+                "english": "shareNum",
+                "typeId": 0,
+                "required": 0
+            },
+            {
+                "chinese": "OpenId",
+                "dictionary": null,
+                "data": "oUWye4sUBGTr3Gr9OAmjPAWC5OiI",
+                "english": "open_id",
+                "typeId": 0,
+                "required": 0
+            }
+        ],
+        "customData": [
+            {
+                "chinese": "单位",
+                "dictionary": "",
+                "data": "苦瓜软件",
+                "english": "company",
+                "typeId": 0,
+                "required": 1
+            },
+            {
+                "chinese": "职务",
+                "dictionary": "",
+                "data": "",
+                "english": "position",
+                "typeId": 0,
+                "required": 1
+            },
+            {
+                "chinese": "喜欢哪位小同学？（可多选）",
+                "dictionary": "美男子陈治锴##@@##小仙女张小妹##@@##小公主谭月##@@##帅气逼人大飞哥##@@##幽默风趣文武德##@@##和蔼可亲尹大大",
+                "data": "[\"美男子陈治锴\",\"小仙女张小妹\",\"小公主谭月\",\"帅气逼人大飞哥\",\"幽默风趣文武德\",\"和蔼可亲尹大大\"]",
+                "english": "kdHG_",
+                "typeId": 5,
+                "required": 1
+            },
+            {
+                "chinese": "认识苦瓜吗？",
+                "dictionary": "了解##@@##没听过##@@##很熟悉",
+                "data": "很熟悉",
+                "english": "EwgT_",
+                "typeId": 4,
+                "required": 1
+            },
+            {
+                "chinese": "部门",
+                "dictionary": "",
+                "data": "技术部",
+                "english": "department",
+                "typeId": 0,
+                "required": 1
+            }
+        ]
+    },
+    "message": "",
+    "data": null
+}
+
+22、报名弹框信息
+/event/reg-simple/{eventId}/{openId}
+示例    https://reg.coolgua.net/event/reg-simple/f9402c2ae12a45dda6f8f6dc7bc55495/oUWye4sUBGTr3Gr9OAmjPAWC5OiI
+POST 请求
+返回值：
+{
+    "code": 200,
+    "list": null,
+    "map": {
+        "ticket_num": "219583406",
+        "create_time": "2018-07-30 15:11",
+        "open_id": "oUWye4sUBGTr3Gr9OAmjPAWC5OiI",
+        "photo": "https://reg.coolgua.net/attachment/f9402c2ae12a45dda6f8f6dc7bc55495/201807/30/20180730151039757yvLI.jpg",
+        "inviteNum": 0,
+        "shareNum": 1,
+        "effect": 0,
+        "name": "张漂亮",
+        "head_imgurl": "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKsQ0Up1vSBmticPhjvAF7HFeqgibf6oaRnl8xc8hzcwjf7oAEggxt4zl26ibcyebbFSJicVmtED6sVeQ/132",
+        "cellphone": "18330822191",
+        "effectRank": 9,
+        "company": "苦瓜软件",
+        "inviter": "贺佳",
+        "id": "ece3b844f7b44e6baf3a755d932dac50",
+        "inviteRank": 4
+    },
+    "message": "",
+    "data": null
+}
