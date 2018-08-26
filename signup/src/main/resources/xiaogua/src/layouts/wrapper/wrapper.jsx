@@ -51,11 +51,6 @@ const galaxy = Loadable({
   loading: loadingComponent
 })
 
-const galaxydetail = Loadable({
-  loader: () => import('containers/galaxydetail/galaxydetail'),
-  loading: loadingComponent
-})
-
 const signdetail = Loadable({
   loader: () => import('containers/signdetail/signdetail'),
   loading: loadingComponent
