@@ -72,7 +72,6 @@ class Wrapper extends React.Component {
           <Route path='/statistics/:id' component={statistics}/>
           <Route path='/signlist/:id' component={signlist}/>
           <Route exact path='/galaxy/:id' component={galaxy}/>
-          <Route path='/galaxy/:id/:openId' component={galaxydetail}/>
           <Route path='/signdetail/:id/:openId' component={signdetail}/>
           <Route path="*" component={NotFoundPage} />
         </Switch>
