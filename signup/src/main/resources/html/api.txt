@@ -1,3 +1,6 @@
+/**
+  nguhuangxiao
+*/
 AppID(小程序ID) wx902b081ec788f4de
 AppSecret(小程序密钥) 9d3eb5c9d31adbe36cdbb59a73d18d42
 
